@@ -1,0 +1,1 @@
+enum WaveformType { summary, accurate }

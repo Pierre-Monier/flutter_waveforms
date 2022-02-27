@@ -1,0 +1,42 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - lib/generated_plugin_registrant.dart
+
+  strong-mode:
+    implicit-casts: false
+  errors:
+    avoid_unused_constructor_parameters: warning
+    unrelated_type_equality_checks: error
+    iterable_contains_unrelated_type: error
+    missing_required_param: error
+    missing_return: warning
+    unnecessary_null_comparison: error
+    unnecessary_non_null_assertion: error
+    always_declare_return_types: error
+
+linter:
+  rules:
+    - avoid_bool_literals_in_conditional_expressions
+    - avoid_positional_boolean_parameters
+    - parameter_assignments
+    - prefer_null_aware_method_calls
+    - use_is_even_rather_than_modulo
+    - use_named_constants
+    - require_trailing_commas
+    - avoid_escaping_inner_quotes
+    - prefer_double_quotes
+    - cancel_subscriptions
+    - close_sinks
+    - always_use_package_imports
+    - avoid_annotating_with_dynamic
+    - avoid_multiple_declarations_per_line
+    - avoid_unused_constructor_parameters
+    - avoid_redundant_argument_values
+    - always_declare_return_types
+    - lines_longer_than_80_chars
+    - sort_constructors_first
+    - sort_unnamed_constructors_first
+    - sort_child_properties_last
+    - prefer_conditional_assignment
