@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import "package:flutter_waveforms/domain/audio_file_peak_level_input.dart";
 import "package:flutter_waveforms/service/ffmpeg_service.dart";
 import "package:flutter_waveforms/util/app_logger.dart";
@@ -9,12 +11,13 @@ abstract class IsolateService {
   static void spawnAudioFilePeakLevelIsolate({
     required String isolateName,
     required AudioFilePeakLevelInput input,
+    required Completer<List<double>?> completer,
   }) {
-    isolates.spawn<String>(
+    isolates.spawn<List<double>?>(
       getAudioFilePeakLevelEntryPoint,
       name: isolateName,
       onReceive: (message) {
-        AppLogger.i("receive data from isolate: $message");
+        completer.complete(message);
         isolates.kill(isolateName);
       },
       onInitialized: () => isolates.send(
@@ -39,7 +42,7 @@ abstract class IsolateService {
       // final response = "got ${input.audioFile.path} and ${input.waveformType}";
       final response = await FFmpegService.getAudioFilePeakLevel(input);
       // THIS SHOULD TRIGGER ONRECEIVED
-      messenger.send(response.toString());
+      messenger.send(response);
     });
   }
 }

@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:io";
 
 import "package:flutter/material.dart";
@@ -5,6 +6,7 @@ import "package:flutter_waveforms/domain/audio_file_peak_level_input.dart";
 import "package:flutter_waveforms/domain/painter_type.dart";
 import "package:flutter_waveforms/error/package_exception.dart";
 import "package:flutter_waveforms/service/ffmpeg_service.dart";
+import "package:flutter_waveforms/service/isolate_service.dart";
 import "package:flutter_waveforms/widget/painter/waveform_line_painter.dart";
 import "package:flutter_waveforms/domain/waveform_type.dart";
 import "package:flutter_waveforms/widget/painter/waveform_path_painter.dart";
@@ -34,18 +36,23 @@ class Waveform extends StatelessWidget {
   final bool shouldFill;
 
   Future<List<double>?> _getAudioFileData() {
-    // TODO(pierre/high): make it works
-    // IsolateService.spawnAudioFilePeakLevelIsolate(
-    //   isolateName: "${audioFile.path}_$waveformType",
-    //   input: AudioFilePeakLevelInput(
-    //     audioFile: audioFile,
-    //     waveformType: waveformType,
-    //   ),
-    // );
-
-    return FFmpegService.getAudioFilePeakLevel(
-      AudioFilePeakLevelInput(audioFile: audioFile, waveformType: waveformType),
+    final _completer = Completer<List<double>?>();
+    // TODO(pierre/low): better isolateName
+    // TODO(pierre/high): make it works on Android
+    IsolateService.spawnAudioFilePeakLevelIsolate(
+      isolateName: "${audioFile.path}_$waveformType",
+      input: AudioFilePeakLevelInput(
+        audioFile: audioFile,
+        waveformType: waveformType,
+      ),
+      completer: _completer,
     );
+
+    return _completer.future;
+
+    // return FFmpegService.getAudioFilePeakLevel(
+    //   AudioFilePeakLevelInput(audioFile: audioFile, waveformType: waveformType),
+    // );
   }
 
   CustomPainter _getCustomPainter({required List<double> data}) {
