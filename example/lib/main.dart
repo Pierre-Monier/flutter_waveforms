@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: FutureBuilder<List<File>>(
-          future: getAUdioFilesFromAssets(["cymbal.wav"]),
+          future: getAUdioFilesFromAssets(["cymbal.wav", "test.wav"]),
           builder: (context, snapshot) {
             final _data = snapshot.data;
 
@@ -82,31 +82,31 @@ class _MyAppState extends State<MyApp> {
                               // backgroundColor: Colors.brown,
                             ));
                       }).toList(),
-                      ..._data.map<Widget>((e) {
-                        return Padding(
-                            padding: const EdgeInsets.all(48.0),
-                            child: Waveform(
-                              size: const Size(600, 200),
-                              audioFile: e,
-                              waveformType: WaveformType.accurate,
-                              painterType: PainterType.path,
-                              shouldFill: false,
-                              // waveColor: Colors.blue,
-                              // backgroundColor: Colors.brown,
-                            ));
-                      }).toList(),
-                      ..._data.map<Widget>((e) {
-                        return Padding(
-                            padding: const EdgeInsets.all(48.0),
-                            child: Waveform(
-                              size: const Size(600, 200),
-                              audioFile: e,
-                              waveformType: WaveformType.accurate,
-                              painterType: PainterType.line,
-                              // waveColor: Colors.blue,
-                              // backgroundColor: Colors.brown,
-                            ));
-                      }).toList()
+                      // ..._data.map<Widget>((e) {
+                      //   return Padding(
+                      //       padding: const EdgeInsets.all(48.0),
+                      //       child: Waveform(
+                      //         size: const Size(600, 200),
+                      //         audioFile: e,
+                      //         waveformType: WaveformType.accurate,
+                      //         painterType: PainterType.path,
+                      //         shouldFill: false,
+                      //         // waveColor: Colors.blue,
+                      //         // backgroundColor: Colors.brown,
+                      //       ));
+                      // }).toList(),
+                      // ..._data.map<Widget>((e) {
+                      //   return Padding(
+                      //       padding: const EdgeInsets.all(48.0),
+                      //       child: Waveform(
+                      //         size: const Size(600, 200),
+                      //         audioFile: e,
+                      //         waveformType: WaveformType.accurate,
+                      //         painterType: PainterType.line,
+                      //         // waveColor: Colors.blue,
+                      //         // backgroundColor: Colors.brown,
+                      //       ));
+                      // }).toList()
                     ],
                   )),
             );
