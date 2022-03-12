@@ -1,18 +1,3 @@
 # flutter_waveforms
 
-A new flutter plugin project.
-
-## Getting Started
-
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-The plugin project was generated without specifying the `--platforms` flag, no platforms are currently supported.
-To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
-directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+A plugin that draw waveform, still a WIP, I'm struggling with [flutter_isolate](https://github.com/rmawatson/flutter_isolate/issues/25) that doesn't work on Android. I also think that using ffmpeg isn't the best way of getting data for waveform. I think that using c/c++ library with dart ffi or gettign directly the sound data with dart might be a better idea. Not sure if I'm going to spend more time on this project
